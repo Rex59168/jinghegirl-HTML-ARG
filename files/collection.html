@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>/收藏</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-files.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-files.css">
 </head>
 <body class="site-files">
 
@@ -52,14 +53,14 @@
   <div id="closing" style="display:none;padding:14px;font-size:14px;line-height:1.9;">
     他不是遇到她。<br>
     他掛了一張她這輩子唯一無法拒絕的餌,掛了兩年,等她自己走過來。
-    <p style="text-align:center;margin-top:20px;"><a href="/ending/index.html" id="ending-link">回協尋站首頁 →</a></p>
+    <p style="text-align:center;margin-top:20px;"><a href="ending/index.html" id="ending-link">回協尋站首頁 →</a></p>
   </div>
 </main>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 const FILES = [
   { name: "001.txt", readable: false, size: "4 KB", date: "2016/05/22" },
@@ -99,11 +100,11 @@ FILES.forEach((f) => {
 function openFile(name) {
   if (name === "007.txt") {
     document.getElementById("detail-007").classList.add("open");
-    JHNotebook.add("ch6_007", "林昭的檔案(007.txt)最後更新:2024/03/11——她 2022 年就失蹤了", "/files/collection.html");
+    JHNotebook.add("ch6_007", "林昭的檔案(007.txt)最後更新:2024/03/11——她 2022 年就失蹤了", "files/collection.html");
   }
   if (name === "012.txt") {
     document.getElementById("detail-012").classList.add("open");
-    JHNotebook.add("ch6_012", "林晞的檔案(012.txt)建檔日期:2023/11/06", "/files/collection.html");
+    JHNotebook.add("ch6_012", "林晞的檔案(012.txt)建檔日期:2023/11/06", "files/collection.html");
     if (!JH.get("ch6_done")) {
       JH.set("ch6_done", true);
       document.getElementById("closing").style.display = "block";

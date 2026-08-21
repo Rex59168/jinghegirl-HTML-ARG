@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>悠遊卡・當日刷卡紀錄</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-transit.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-transit.css">
 </head>
 <body class="site-transit">
 
@@ -34,12 +35,12 @@
     </p>
   </div>
 
-  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="xunren/rebuild-0814.html">← 回去看其他線索</a></p>
 
 </main>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
   "你們約好的地方是文昌站。仔細看清單裡最後一筆出站紀錄。",
@@ -47,8 +48,8 @@ window.JH_HINTS = [
   "19:38 出站的是興安站,不是文昌站。點那一列。",
 ];
 </script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 const RECORDS = [
   { time: "17:22", type: "進站", station: "青川", key: "in1" },
@@ -96,7 +97,7 @@ function complete() {
   JHNotebook.add(
     "ch4_t2",
     "她 17:22 進站,19:38 出站的是興安站——不是約好的文昌站",
-    "/transit/card-record.html"
+    "transit/card-record.html"
   );
 }
 </script>

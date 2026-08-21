@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>靖河捷運・時刻查詢</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-transit.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-transit.css">
 </head>
 <body class="site-transit">
 
@@ -64,12 +65,12 @@
     </div>
   </div>
 
-  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="xunren/rebuild-0814.html">← 回去看其他線索</a></p>
 
 </main>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
   "妳有沒有比對過,他改時間的那則訊息是什麼時候傳的?",
@@ -77,8 +78,8 @@ window.JH_HINTS = [
   "路況其實正常,而且訊息是前一天傳的。點下面的按鈕標記這則訊息。",
 ];
 </script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 if (JH.get("ch4_t1")) {
   document.getElementById("flag-result").style.display = "block";
@@ -94,7 +95,7 @@ document.getElementById("flag-btn").addEventListener("click", () => {
   JHNotebook.add(
     "ch4_t1",
     "他改時間的藉口(塞車)是提前一天傳的,路況其實正常",
-    "/transit/query.html"
+    "transit/query.html"
   );
 });
 </script>

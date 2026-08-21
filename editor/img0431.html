@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>IMG_0431 ── 編輯紀錄</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-editor.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-editor.css">
 </head>
 <body class="site-editor">
 
@@ -47,7 +48,7 @@
   <section class="panel" id="next-panel" style="display:none;">
     <h2>下一步</h2>
     <p id="next-text"></p>
-    <p><a class="btn" href="/market/listing.html" style="display:inline-block;background:#2c5b3f;color:#d8ffd8;padding:10px 18px;text-decoration:none;">去二手交易區查編號 →</a></p>
+    <p><a class="btn" href="market/listing.html" style="display:inline-block;background:#2c5b3f;color:#d8ffd8;padding:10px 18px;text-decoration:none;">去二手交易區查編號 →</a></p>
   </section>
 
 </main>
@@ -56,8 +57,8 @@
   <div class="lightbox-inner" id="lightbox-inner"></div>
 </div>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
   "妳有仔細看過三個版本的差別嗎?",
@@ -65,8 +66,8 @@ window.JH_HINTS = [
   "是 C1,桌角那張紙。",
 ];
 </script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 const lightbox = document.getElementById("lightbox");
 const lbInner = document.getElementById("lightbox-inner");
@@ -85,7 +86,7 @@ document.getElementById("layer6-btn").addEventListener("click", () => {
   JHNotebook.add(
     "ch1_layer6",
     "她刪掉一則草稿:找到了,先不要跟媽說(但沒寫是什麼)",
-    "/editor/img0431.html"
+    "editor/img0431.html"
   );
 });
 
@@ -103,7 +104,7 @@ document.querySelectorAll(".cell").forEach((cell) => {
       JHNotebook.add(
         "ch1_code",
         "她在找一張光碟,編號只讀到 #18_(末位被裁掉)",
-        "/editor/img0431.html"
+        "editor/img0431.html"
       );
       document.getElementById("next-panel").style.display = "block";
       document.getElementById("next-text").textContent =

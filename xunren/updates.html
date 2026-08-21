@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>已釐清事項 | 協尋林晞</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-xunren.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-xunren.css">
 </head>
 <body class="site-xunren">
 
@@ -20,13 +21,13 @@
     <h2>公告</h2>
   </section>
 
-  <p style="text-align:center;"><a href="/index.html">← 回協尋站首頁</a></p>
+  <p style="text-align:center;"><a href="index.html">← 回協尋站首頁</a></p>
 </main>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 const items = [
   { key: "always", date: "8/15", text: "建站。官方公告最後聯繫時間為 17:32。" },
@@ -51,28 +52,28 @@ items.forEach((it) => {
 if (JH.get("ch3_done") && !JH.get("ch4_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
-  div.innerHTML = '<span class="date"></span><a href="/xunren/rebuild-0814.html">→ 繼續:重建 8/14 那一天</a>';
+  div.innerHTML = '<span class="date"></span><a href="xunren/rebuild-0814.html">→ 繼續:重建 8/14 那一天</a>';
   list.appendChild(div);
 }
 
 if (JH.get("ch4_done") && !JH.get("ch5_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
-  div.innerHTML = '<span class="date"></span><a href="/chat/thread-review.html">→ 繼續:再讀一次那份對話</a>';
+  div.innerHTML = '<span class="date"></span><a href="chat/thread-review.html">→ 繼續:再讀一次那份對話</a>';
   list.appendChild(div);
 }
 
 if (JH.get("ch5_done") && !JH.get("ch6_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
-  div.innerHTML = '<span class="date"></span><a href="/files/collection.html">→ 繼續:他的收藏資料夾</a>';
+  div.innerHTML = '<span class="date"></span><a href="files/collection.html">→ 繼續:他的收藏資料夾</a>';
   list.appendChild(div);
 }
 
 if (JH.get("ch6_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
-  div.innerHTML = '<span class="date"></span><a href="/ending/index.html">→ 最新進度</a>';
+  div.innerHTML = '<span class="date"></span><a href="ending/index.html">→ 最新進度</a>';
   list.appendChild(div);
 }
 </script>

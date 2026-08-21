@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>定位分享・設定紀錄</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-transit.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-transit.css">
 </head>
 <body class="site-transit">
 
@@ -35,12 +36,12 @@
     </p>
   </div>
 
-  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="xunren/rebuild-0814.html">← 回去看其他線索</a></p>
 
 </main>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
   "她有開定位分享給媽媽。看一下分享的時長設定。",
@@ -48,8 +49,8 @@ window.JH_HINTS = [
   "點結束時間那一行,看看幾點自動關閉的。",
 ];
 </script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 function complete() {
   document.getElementById("reveal-panel").style.display = "block";
@@ -58,7 +59,7 @@ function complete() {
   JHNotebook.add(
     "ch4_t5",
     "她開了定位分享,但只設定 17:00–19:00,19:00 一到就自動關閉",
-    "/transit/location-share.html"
+    "transit/location-share.html"
   );
 }
 if (JH.get("ch4_t5")) complete();

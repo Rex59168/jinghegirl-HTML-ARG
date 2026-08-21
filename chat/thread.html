@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>對話記錄・@rec_1029</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-chat.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-chat.css">
 </head>
 <body class="site-chat">
 
@@ -32,8 +33,8 @@
   <button type="button" class="chat-continue-btn" id="continue-btn">重建 8/14 那一天 →</button>
 </div>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
   "有幾則訊息被撤回或編輯過,順序被打亂了。試著依對話脈絡想像正常人會怎麼回。",
@@ -41,15 +42,15 @@ window.JH_HINTS = [
   "正確順序是:禮拜四可以嗎 → 大概4點左右 → 約在文昌站 → 哪個出口 → 2號出口連鎖咖啡廳 → 那就這樣說定了。",
 ];
 </script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 let DATA = null;
 let placedOrder = []; // array of message objects in placed order
 let pool = [];
 let selectedId = null;
 
-fetch("/assets/data/chat-thread.json")
+fetch("assets/data/chat-thread.json")
   .then((r) => r.json())
   .then((data) => {
     DATA = data;
@@ -152,19 +153,19 @@ function solveReorder() {
   JHNotebook.add(
     "ch3_meetup",
     "約定成立:8/14 16:00,河西・文昌站 2 號出口,連鎖咖啡廳",
-    "/chat/thread.html"
+    "chat/thread.html"
   );
   JHNotebook.add(
     "ch3_time_change",
     "8/13 他說會塞車,把時間改成 17:30",
-    "/chat/thread.html"
+    "chat/thread.html"
   );
 
   window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }
 
 document.getElementById("continue-btn").addEventListener("click", () => {
-  window.location.href = "/xunren/rebuild-0814.html";
+  window.location.href = "xunren/rebuild-0814.html";
 });
 </script>
 </body>

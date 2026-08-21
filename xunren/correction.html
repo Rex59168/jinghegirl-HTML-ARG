@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
 <title>更正資訊 | 協尋林晞</title>
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/widgets.css">
-<link rel="stylesheet" href="/assets/css/site-xunren.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/widgets.css">
+<link rel="stylesheet" href="assets/css/site-xunren.css">
 </head>
 <body class="site-xunren">
 
@@ -45,16 +46,16 @@
       對了——我把她雲端相簿的密碼傳給你了:<strong>linxi0417</strong><br>
       我一直沒敢自己點進去看,你能不能幫我看看裡面有沒有什麼?
     </p>
-    <p id="zy-link" style="display:none;"><a class="btn" href="/editor/album.html">前往她的雲端相簿 →</a></p>
+    <p id="zy-link" style="display:none;"><a class="btn" href="editor/album.html">前往她的雲端相簿 →</a></p>
   </div>
 
   <p style="text-align:center;margin-top:20px;">
-    <a href="/index.html">← 回協尋站首頁</a>
+    <a href="index.html">← 回協尋站首頁</a>
   </p>
 </main>
 
-<script src="/assets/js/state.js"></script>
-<script src="/assets/js/notebook.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
   "妳有仔細比對過協尋啟事寫的時間,跟她本人動態的時間嗎?",
@@ -62,8 +63,8 @@ window.JH_HINTS = [
   "是 19:41。填進下面的時間欄位就可以了。",
 ];
 </script>
-<script src="/assets/js/hint.js"></script>
-<script src="/assets/js/ambient.js"></script>
+<script src="assets/js/hint.js"></script>
+<script src="assets/js/ambient.js"></script>
 <script>
 const ANSWER_HASH = "d5f915e54b6d7737c3d9a036dfe547944879b65b3b72e0e6a44f21ba62dac1ef"; // sha256("19:41")
 
@@ -88,7 +89,7 @@ document.getElementById("correction-form").addEventListener("submit", async (e) 
   JHNotebook.add(
     "ch0_answer",
     "最後訊號其實是 19:41(原公告寫 17:32)",
-    "/xunren/correction.html"
+    "xunren/correction.html"
   );
 
   document.getElementById("form-view").style.display = "none";
