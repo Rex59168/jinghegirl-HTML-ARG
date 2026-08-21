@@ -38,15 +38,24 @@
 
 <div id="blackout" style="position:fixed;inset:0;background:#000;z-index:300;display:none;color:#eee;">
   <div id="blackout-lines" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-size:17px;line-height:2.4;padding:0 24px;max-width:480px;"></div>
-  <div id="blackout-footer" style="display:none;position:absolute;bottom:40px;left:0;right:0;text-align:center;">
+  <div id="blackout-footer" style="display:none;position:absolute;bottom:24px;left:0;right:0;text-align:center;max-height:70vh;overflow-y:auto;padding:0 20px;">
     <a href="/resources/help.html" style="color:#9fc7ff;font-size:15px;">求助資訊 / 本作虛構聲明 →</a>
     <br><br>
     <a href="/ending/checkself.html" style="color:#777;font-size:13px;">你留下了什麼 →</a>
+
+    <div style="margin-top:22px;">
+      <button type="button" id="gen-card-btn" style="background:#333;color:#fff;border:1px solid #555;padding:10px 20px;border-radius:8px;font-size:14px;">下載通關截圖</button>
+      <div id="share-card-preview" style="display:none;margin-top:16px;">
+        <canvas id="share-canvas" style="width:100%;max-width:280px;border-radius:8px;"></canvas>
+        <p style="font-size:11px;color:#666;margin-top:8px;">沒有自動下載的話,長按上面的圖片存檔</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <script src="/assets/js/state.js"></script>
 <script src="/assets/js/notebook.js"></script>
+<script src="/assets/js/share-card.js"></script>
 <script>
 const nickname = JH.get("nickname") || "（未知）";
 const howKnown = JH.get("how_known") || "（未知）";
@@ -87,6 +96,7 @@ document.getElementById("continue-btn").addEventListener("click", () => {
         setTimeout(() => {
           document.getElementById("blackout-footer").style.display = "block";
         }, 800);
+        JH.set("ending_completed_at", Date.now());
         return;
       }
       const p = document.createElement("p");
@@ -97,6 +107,22 @@ document.getElementById("continue-btn").addEventListener("click", () => {
       i++;
     }, 1400);
   }, 5000); // 全黑後停留 5 秒,什麼都不放
+});
+
+document.getElementById("gen-card-btn").addEventListener("click", () => {
+  const start = JH.get("session_start");
+  const end = JH.get("ending_completed_at") || Date.now();
+  const elapsedMinutes = start ? Math.max(1, Math.round((end - start) / 60000)) : 1;
+
+  const canvas = document.getElementById("share-canvas");
+  JHShareCard.draw(canvas, {
+    elapsedMinutes,
+    nickname,
+    siteHost: window.location.host,
+  });
+
+  document.getElementById("share-card-preview").style.display = "block";
+  JHShareCard.download(canvas, "013.png");
 });
 </script>
 </body>
