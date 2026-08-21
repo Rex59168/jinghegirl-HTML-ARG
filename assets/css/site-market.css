@@ -8,7 +8,7 @@ body.site-market {
   background: #d9661d;
   color: #fff;
   padding: 14px 16px;
-  position: sticky; top: 0; z-index: 10;
+  position: sticky; top: 40px; z-index: 10;
 }
 .site-market header.market-head h1 { margin: 0; font-size: 17px; }
 .site-market header.market-head .sub { font-size: 12px; opacity: .9; }

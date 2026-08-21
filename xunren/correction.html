@@ -6,6 +6,7 @@
 <base href="../">
 <title>更正資訊 | 協尋林晞</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-xunren.css">
 </head>
@@ -55,6 +56,7 @@
 </main>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
@@ -96,6 +98,7 @@ document.getElementById("correction-form").addEventListener("submit", async (e) 
   document.getElementById("success-view").style.display = "block";
   setTimeout(() => (document.getElementById("zy-msg2").style.display = "block"), 900);
   setTimeout(() => (document.getElementById("zy-link").style.display = "block"), 1600);
+  setTimeout(() => JHPhone.push("nudge_ch1", "密碼傳給你了,先去看看她的相簿。", "editor/album.html"), 2200);
 });
 </script>
 </body>

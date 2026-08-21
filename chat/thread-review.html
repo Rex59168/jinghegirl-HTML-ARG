@@ -6,6 +6,7 @@
 <base href="../">
 <title>對話記錄・再讀一次</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-chat.css">
 </head>
@@ -29,6 +30,7 @@
 <div class="reveal-block" id="reveal-block" style="display:none;"></div>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
@@ -155,6 +157,7 @@ function completeChapter(correct) {
   JHNotebook.add("ch5_tags", `重讀對話,標對 ${correct}/12 句誘導語句`, "chat/thread-review.html");
   JHNotebook.add("ch5_mutual", "那兩個共同好友帳號,標點習慣跟錯字模式都跟 @rec_1029 一致——是同一個人", "chat/thread-review.html");
   JHNotebook.add("ch5_delay", "他每次回覆間隔 8–12 分鐘,不是在忙,是刻意延遲,製造他不是隨時在等妳的錯覺", "chat/thread-review.html");
+  JHPhone.push("nudge_ch6", "這次妳應該看懂了。我這邊還有一個東西給你看。", "files/collection.html");
 
   const block = document.getElementById("reveal-block");
   block.style.display = "block";

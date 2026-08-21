@@ -60,7 +60,7 @@
   .jh-notebook-panel.open { transform: translateX(0); }
 }
 
-/* 周妤提示 */
+/* 周妤的手機 */
 .jh-hint-btn {
   position: fixed;
   right: 12px;
@@ -70,8 +70,13 @@
   color: #fff;
   border: none;
   border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 14px;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
 .jh-hint-btn.jh-hint-nudge {
@@ -80,6 +85,21 @@
 @keyframes jh-pulse {
   0%, 100% { box-shadow: 0 2px 8px rgba(74,111,165,.4); }
   50% { box-shadow: 0 2px 16px rgba(74,111,165,.9); }
+}
+.jh-phone-badge {
+  position: absolute;
+  top: -4px; right: -4px;
+  background: #e0442f;
+  color: #fff;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 .jh-hint-panel {
@@ -111,7 +131,15 @@
   margin: 0 0 8px;
   font-size: 14px;
   line-height: 1.5;
+  color: #222;
 }
+a.jh-hint-msg {
+  background: #e7edf7;
+  color: #2a4d8f;
+  font-weight: 600;
+  cursor: pointer;
+}
+a.jh-hint-msg::after { content: " →"; }
 .jh-hint-ask {
   border: none;
   border-top: 1px solid #eee;

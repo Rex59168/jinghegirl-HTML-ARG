@@ -6,6 +6,7 @@
 <base href="../">
 <title>遺骸身分確認 | 靖河日報</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-news.css">
 </head>
@@ -35,6 +36,7 @@
 </main>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/hint.js"></script>
 <script src="assets/js/ambient.js"></script>
@@ -46,6 +48,7 @@ JHNotebook.add(
   "河堤尋獲的遺骸經齒模比對,確認就是林昭——2022年失蹤,失蹤地點與尋獲地點有一定距離,疑似遭人移動棄置",
   "news/identified.html"
 );
+setTimeout(() => JHPhone.push("nudge_ending", "沒事了,你回來吧。", "ending/index.html"), 1500);
 </script>
 </body>
 </html>

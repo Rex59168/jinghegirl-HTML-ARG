@@ -6,6 +6,7 @@
 <base href="../">
 <title>對話記錄・@rec_1029</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-chat.css">
 </head>
@@ -38,6 +39,7 @@
 <p style="color:#ece5dd;font-size:12px;text-align:center;margin-top:40px;user-select:text;">已讀不代表安全。</p>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
@@ -181,6 +183,7 @@ function solveReorder() {
   );
 
   window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  JHPhone.push("nudge_ch4", "約定確認了,我們來重建 8/14 那天。", "xunren/rebuild-0814.html");
 }
 
 document.getElementById("continue-btn").addEventListener("click", () => {

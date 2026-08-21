@@ -6,6 +6,7 @@
 <base href="../">
 <title>二手交易・唱片收藏分類</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-market.css">
 </head>
@@ -87,6 +88,7 @@
 </main>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
@@ -196,6 +198,7 @@ function renderRow(r) {
       document.getElementById("confirm-note").innerHTML =
         '兩年,沒有降價,沒有下架,沒有回覆任何人。<br>直到 2025 年 7 月,他回了第一則訊息。<br><br>' +
         '<a href="chat/thread.html">查看完整對話記錄 →</a>';
+      JHPhone.push("nudge_ch3", "確認是 #188 了,我把完整對話記錄傳給你。", "chat/thread.html");
     });
   }
 

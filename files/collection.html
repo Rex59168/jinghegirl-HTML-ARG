@@ -6,6 +6,7 @@
 <base href="../">
 <title>/收藏</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-files.css">
 </head>
@@ -72,6 +73,7 @@
 </main>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/hint.js"></script>
 <script src="assets/js/ambient.js"></script>
@@ -138,6 +140,7 @@ function openFile(name) {
       JH.set("ch6_done", true);
       document.getElementById("closing").style.display = "block";
       document.getElementById("closing").scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => JHPhone.push("nudge_news", "我……傳一則新聞給你,你自己看。", "news/report.html"), 1800);
     }
   }
 }

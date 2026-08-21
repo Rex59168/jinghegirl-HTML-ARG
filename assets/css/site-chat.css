@@ -8,7 +8,7 @@ body.site-chat {
   background: #3a3a3c;
   color: #fff;
   padding: 14px 16px;
-  position: sticky; top: 0; z-index: 10;
+  position: sticky; top: 40px; z-index: 10;
 }
 .site-chat header.chat-head h1 { margin: 0; font-size: 16px; }
 .site-chat header.chat-head .sub { font-size: 12px; opacity: .8; }
@@ -142,7 +142,7 @@ body.site-chat {
   gap: 6px;
   padding: 10px 12px;
   position: sticky;
-  top: 46px;
+  top: 86px;
   background: #ece5dd;
   z-index: 9;
 }

@@ -6,6 +6,7 @@
 <base href="../">
 <title>重建 8/14 | 協尋林晞</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-xunren.css">
 </head>
@@ -34,6 +35,7 @@
 </main>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/hint.js"></script>
 <script src="assets/js/ambient.js"></script>
@@ -86,6 +88,7 @@ function showAllDone() {
   requestAnimationFrame(() => {
     panel.style.opacity = "1";
   });
+  JHPhone.push("nudge_ch5", "五件事都查完了,我們再讀一次那份對話。", "chat/thread-review.html");
 }
 
 renderList();

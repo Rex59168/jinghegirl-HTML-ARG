@@ -6,13 +6,14 @@
 <base href="../">
 <title>IMG_0431 ── 編輯紀錄</title>
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/browser-chrome.css">
 <link rel="stylesheet" href="assets/css/widgets.css">
 <link rel="stylesheet" href="assets/css/site-editor.css">
 </head>
 <body class="site-editor">
 <!-- C1 -->
 <header class="editor-head">
-  <span>CloudAlbum・編輯紀錄</span>
+  <span>雲端相簿・編輯紀錄</span>
   <span class="fname">IMG_0431</span>
 </header>
 
@@ -58,6 +59,7 @@
 </div>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
 window.JH_HINTS = [
@@ -106,6 +108,7 @@ document.querySelectorAll(".cell").forEach((cell) => {
         "她在找一張光碟,編號只讀到 #18_(末位被裁掉)",
         "editor/img0431.html"
       );
+      JHPhone.push("nudge_ch2", "編號只到 #18_,去二手平台查查看。", "market/listing.html");
       document.getElementById("next-panel").style.display = "block";
       document.getElementById("next-text").textContent =
         "編號末位看不到。要知道完整編號,得去別的地方查證了。";

@@ -8,7 +8,7 @@ body.site-social {
   display: flex; align-items: center; gap: 10px;
   padding: 14px 16px;
   border-bottom: 1px solid #eee;
-  position: sticky; top: 0;
+  position: sticky; top: 40px;
   background: #fff;
   z-index: 10;
 }
