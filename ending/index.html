@@ -53,6 +53,8 @@
     <br><br>
     <a href="ending/checkself.html" style="color:#777;font-size:13px;">你留下了什麼 →</a>
 
+    <p id="stats-line" style="display:none;font-size:12px;color:#666;margin-top:18px;"></p>
+
     <div style="margin-top:22px;">
       <button type="button" id="gen-card-btn" style="background:#333;color:#fff;border:1px solid #555;padding:10px 20px;border-radius:8px;font-size:14px;">下載通關截圖</button>
       <div id="share-card-preview" style="display:none;margin-top:16px;">
@@ -75,6 +77,7 @@
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/idle-scroll.js"></script>
 <script src="assets/js/share-card.js"></script>
+<script src="assets/js/stats.js"></script>
 <script>
 const nickname = JH.get("nickname") || "（未知）";
 const howKnown = JH.get("how_known") || "（未知）";
@@ -179,6 +182,7 @@ document.getElementById("continue-btn").addEventListener("click", () => {
   btn.style.display = "none";
 
   JH.set("ending_seen", true);
+  JH_STATS.trackEnding();
   const bo = document.getElementById("blackout");
   bo.style.display = "block";
   document.body.style.overflow = "hidden";
@@ -253,11 +257,34 @@ document.getElementById("reset-btn").addEventListener("click", () => {
   };
   const ok = confirm(CONFIRM_TEXT[lang] || CONFIRM_TEXT["zh-Hant"]);
   if (!ok) return;
+  const KEEP_ON_RESET = [JH.PREFIX + "lang", JH.PREFIX + "stats_entered_sent", JH.PREFIX + "stats_ending_sent"];
   Object.keys(localStorage)
-    .filter((k) => k.startsWith(JH.PREFIX) && k !== JH.PREFIX + "lang")
+    .filter((k) => k.startsWith(JH.PREFIX) && !KEEP_ON_RESET.includes(k))
     .forEach((k) => localStorage.removeItem(k));
   window.location.href = "index.html";
 });
+
+// 進站/抵達結局人數:兩個數字都抓到才顯示,抓不到(例如統計服務還沒設好公開計數器)就整行不顯示
+const STATS_LABELS = {
+  "zh-Hant": (entered, ending) => `已有 ${entered} 人進站,其中 ${ending} 人抵達這裡。`,
+  "zh-Hans": (entered, ending) => `已有 ${entered} 人进站,其中 ${ending} 人抵达这里。`,
+  en: (entered, ending) => `${entered} people have entered this site, and ${ending} of them made it here.`,
+};
+let statsCache = null;
+function renderStats() {
+  if (!statsCache) return;
+  const lang = typeof JH_I18N !== "undefined" ? JH_I18N.getLang() : "zh-Hant";
+  const fn = STATS_LABELS[lang] || STATS_LABELS["zh-Hant"];
+  const el = document.getElementById("stats-line");
+  el.textContent = fn(statsCache.entered, statsCache.ending);
+  el.style.display = "block";
+}
+Promise.all([JH_STATS.getEnteredCount(), JH_STATS.getEndingCount()]).then(([entered, ending]) => {
+  if (entered == null || ending == null) return;
+  statsCache = { entered, ending };
+  renderStats();
+});
+document.addEventListener("jh-lang-changed", renderStats);
 </script>
 </body>
 </html>

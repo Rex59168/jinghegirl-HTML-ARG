@@ -75,7 +75,10 @@
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/hint.js"></script>
 <script src="assets/js/ambient.js"></script>
+<script src="assets/js/stats.js"></script>
 <script>
+JH_STATS.trackEntered();
+
 if (JH.get("ch0_done")) {
   document.getElementById("last-contact-fact").textContent = "2025/8/14 19:41(已更正,原公告 17:32)";
 }
