@@ -37,6 +37,17 @@
   </section>
 </main>
 
+<style>
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: jh-blink 0.9s step-start infinite;
+}
+@keyframes jh-blink {
+  50% { opacity: 0; }
+}
+</style>
+
 <div id="blackout" style="position:fixed;inset:0;background:#000;z-index:300;display:none;color:#eee;">
   <div id="blackout-lines" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-size:17px;line-height:2.4;padding:0 24px;max-width:480px;"></div>
   <div id="blackout-footer" style="display:none;position:absolute;bottom:24px;left:0;right:0;text-align:center;max-height:70vh;overflow-y:auto;padding:0 20px;">
@@ -81,7 +92,16 @@ const LINES = [
   "你以為網路上的陌生人不了解你。",
 ];
 
+let endingStarted = false;
+
 document.getElementById("continue-btn").addEventListener("click", () => {
+  if (endingStarted) return; // 防止手機誤觸雙擊,造成兩輪逐字動畫同時疊在一起
+  endingStarted = true;
+
+  const btn = document.getElementById("continue-btn");
+  btn.disabled = true;
+  btn.style.display = "none";
+
   JH.set("ending_seen", true);
   const bo = document.getElementById("blackout");
   bo.style.display = "block";
@@ -90,24 +110,48 @@ document.getElementById("continue-btn").addEventListener("click", () => {
   linesEl.innerHTML = "";
 
   setTimeout(() => {
-    let i = 0;
-    const iv = setInterval(() => {
-      if (i >= LINES.length) {
-        clearInterval(iv);
-        setTimeout(() => {
-          document.getElementById("blackout-footer").style.display = "block";
-        }, 800);
-        return;
-      }
-      const p = document.createElement("p");
-      p.style.margin = "0 0 6px";
-      p.style.minHeight = "1.4em";
-      p.textContent = LINES[i];
-      linesEl.appendChild(p);
-      i++;
-    }, 1400);
+    typeLines(linesEl, 0, () => {
+      setTimeout(() => {
+        document.getElementById("blackout-footer").style.display = "block";
+      }, 800);
+    });
   }, 5000); // 全黑後停留 5 秒,什麼都不放
 });
+
+function typeLines(container, index, onDone) {
+  if (index >= LINES.length) {
+    onDone();
+    return;
+  }
+  const text = LINES[index];
+  const p = document.createElement("p");
+  p.style.margin = "0 0 6px";
+  p.style.minHeight = "1.4em";
+  container.appendChild(p);
+
+  if (text === "") {
+    setTimeout(() => typeLines(container, index + 1, onDone), 500);
+    return;
+  }
+
+  const cursor = document.createElement("span");
+  cursor.className = "typewriter-cursor";
+  cursor.textContent = "▌";
+
+  let charIndex = 0;
+  function typeChar() {
+    if (charIndex >= text.length) {
+      cursor.remove();
+      setTimeout(() => typeLines(container, index + 1, onDone), 700);
+      return;
+    }
+    charIndex++;
+    p.textContent = text.slice(0, charIndex);
+    p.appendChild(cursor);
+    setTimeout(typeChar, 55);
+  }
+  typeChar();
+}
 
 document.getElementById("gen-card-btn").addEventListener("click", () => {
   const elapsedMs = Math.max(1000, JH.activeMs());
