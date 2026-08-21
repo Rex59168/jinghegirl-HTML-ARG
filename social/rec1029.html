@@ -46,8 +46,7 @@
     </p>
   </div>
 
-  <div class="step-done-banner" id="done-banner" style="display:none;background:#b3261e;color:#fff;text-align:center;padding:10px;border-radius:6px;font-weight:600;">這一步,她做對了。</div>
-  <p style="text-align:center;margin-top:14px;" id="back-link" style="display:none;"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+  <p style="text-align:center;margin-top:14px;display:none;" id="back-link"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
 </main>
 
 <div id="report-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;z-index:100;">
@@ -67,14 +66,12 @@ document.getElementById("report-btn").addEventListener("click", () => {
 
 if (JH.get("ch4_t3")) {
   document.getElementById("reveal-block").style.display = "block";
-  document.getElementById("done-banner").style.display = "block";
   document.getElementById("back-link").style.display = "block";
   document.getElementById("confirm-ok").disabled = true;
 }
 
 document.getElementById("confirm-ok").addEventListener("click", () => {
   document.getElementById("reveal-block").style.display = "block";
-  document.getElementById("done-banner").style.display = "block";
   document.getElementById("back-link").style.display = "block";
   document.getElementById("confirm-ok").disabled = true;
   JH.set("ch4_t3", true);

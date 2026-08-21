@@ -64,8 +64,7 @@
     </div>
   </div>
 
-  <div class="step-done-banner" id="done-banner" style="display:none;">這一步,她做對了。</div>
-  <p style="text-align:center;" id="back-link" style="display:none;"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
 
 </main>
 
@@ -83,14 +82,12 @@ window.JH_HINTS = [
 <script>
 if (JH.get("ch4_t1")) {
   document.getElementById("flag-result").style.display = "block";
-  document.getElementById("done-banner").style.display = "block";
   document.getElementById("back-link").style.display = "block";
   document.getElementById("flag-btn").disabled = true;
 }
 
 document.getElementById("flag-btn").addEventListener("click", () => {
   document.getElementById("flag-result").style.display = "block";
-  document.getElementById("done-banner").style.display = "block";
   document.getElementById("back-link").style.display = "block";
   document.getElementById("flag-btn").disabled = true;
   JH.set("ch4_t1", true);

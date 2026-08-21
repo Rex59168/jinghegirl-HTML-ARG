@@ -34,8 +34,7 @@
     </p>
   </div>
 
-  <div class="step-done-banner" id="done-banner" style="display:none;">這一步,她做對了。</div>
-  <p style="text-align:center;" id="back-link" style="display:none;"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+  <p style="text-align:center;margin-top:18px;display:none;" id="back-link"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
 
 </main>
 
@@ -87,13 +86,11 @@ RECORDS.forEach((r) => {
 if (JH.get("ch4_t2")) {
   document.querySelectorAll(".record-row")[3].classList.add("flagged");
   document.getElementById("reveal-block").style.display = "block";
-  document.getElementById("done-banner").style.display = "block";
   document.getElementById("back-link").style.display = "block";
 }
 
 function complete() {
   document.getElementById("reveal-block").style.display = "block";
-  document.getElementById("done-banner").style.display = "block";
   document.getElementById("back-link").style.display = "block";
   JH.set("ch4_t2", true);
   JHNotebook.add(
