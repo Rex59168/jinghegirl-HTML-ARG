@@ -32,6 +32,7 @@ const items = [
   { key: "always", date: "8/15", text: "建站。官方公告最後聯繫時間為 17:32。" },
   { key: "ch0_done", date: "8/16", text: "已確認最後聯繫時間其實是 19:41,非先前公告之 17:32。" },
   { key: "ch1_done", date: "8/17", text: "晞晞在找一張光碟,只知道編號開頭是 #18_。她房間的相簿裡藏著這條線索,不知道她自己有沒有發現。" },
+  { key: "ch2_done", date: "8/19", text: "確認編號是 #188。這份光碟從 2023/11/06 掛在二手平台上,兩年沒人動過,留言 47 則,賣家一則都沒回——直到今年七月。" },
 ];
 
 const list = document.getElementById("updates-list");
@@ -43,12 +44,12 @@ items.forEach((it) => {
   list.appendChild(div);
 });
 
-if (JH.get("ch1_done")) {
+if (JH.get("ch2_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
   div.style.opacity = ".7";
   div.innerHTML =
-    '<span class="date">製作中</span>第二章(她找了兩年)正在整理資料,還沒放上來。晚點再回來看看。';
+    '<span class="date">製作中</span>第三章(完整聊天記錄)正在整理,還沒放上來。晚點再回來看看。';
   list.appendChild(div);
 }
 </script>

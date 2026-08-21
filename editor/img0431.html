@@ -47,7 +47,7 @@
   <section class="panel" id="next-panel" style="display:none;">
     <h2>下一步</h2>
     <p id="next-text"></p>
-    <p><a class="btn" href="/xunren/updates.html" style="display:inline-block;background:#2c5b3f;color:#d8ffd8;padding:10px 18px;text-decoration:none;">回協尋站看最新進度 →</a></p>
+    <p><a class="btn" href="/market/listing.html" style="display:inline-block;background:#2c5b3f;color:#d8ffd8;padding:10px 18px;text-decoration:none;">去二手交易區查編號 →</a></p>
   </section>
 
 </main>
@@ -107,7 +107,7 @@ document.querySelectorAll(".cell").forEach((cell) => {
       );
       document.getElementById("next-panel").style.display = "block";
       document.getElementById("next-text").textContent =
-        "編號末位看不到。要知道完整編號,得去別的地方查證了。(第二章製作中)";
+        "編號末位看不到。要知道完整編號,得去別的地方查證了。";
     } else if (cell.classList.contains("touched")) {
       openLightbox(`<p>這一格依編輯紀錄比對,已被修過。</p>`);
     } else {
