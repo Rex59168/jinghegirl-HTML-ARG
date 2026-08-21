@@ -231,3 +231,20 @@ body.site-chat {
   font-size: 13px;
   line-height: 1.8;
 }
+
+/* 電腦寬螢幕:整條對話收成置中欄,避免訊息泡泡被拉成整排 */
+@media (min-width: 900px) {
+  .site-chat header.chat-head,
+  .site-chat > p,
+  .site-chat .chat-thread,
+  .site-chat .reorder-box,
+  .site-chat .chat-note,
+  .site-chat .tag-legend,
+  .site-chat .tag-check-bar,
+  .site-chat .reveal-block {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .site-chat .chat-msg { max-width: 60%; }
+}
