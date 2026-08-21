@@ -36,7 +36,10 @@
 
   <div class="card">
     <p style="font-weight:600;">共同好友</p>
-    <p><a href="#">@vinylkid_92</a>・<a href="#">@night_archive07</a></p>
+    <p>
+      <button type="button" class="mutual-friend-btn" data-name="@vinylkid_92" style="background:none;border:none;color:#1a73e8;font-size:14px;padding:0;cursor:pointer;">@vinylkid_92</button>・<button type="button" class="mutual-friend-btn" data-name="@night_archive07" style="background:none;border:none;color:#1a73e8;font-size:14px;padding:0;cursor:pointer;">@night_archive07</button>
+    </p>
+    <p id="mutual-friend-note" style="display:none;font-size:12px;color:#999;margin-top:4px;"></p>
   </div>
 
   <div class="card" style="text-align:center;">
@@ -79,6 +82,14 @@
     container.appendChild(document.createTextNode(line));
   });
 })();
+
+document.querySelectorAll(".mutual-friend-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const note = document.getElementById("mutual-friend-note");
+    note.textContent = btn.dataset.name + " 的帳號已設為不公開,看不到內容。";
+    note.style.display = "block";
+  });
+});
 
 document.getElementById("report-btn").addEventListener("click", () => {
   const toast = document.getElementById("report-toast");
