@@ -66,7 +66,6 @@ document.getElementById("unlock-all").addEventListener("click", () => {
   JH.set("ch4_done", true);
   JH.set("ch5_done", true);
   JH.set("ch6_done", true);
-  if (!JH.get("session_start")) JH.set("session_start", Date.now());
   if (!JH.get("nickname")) JH.set("nickname", "測試員");
   if (!JH.get("how_known")) JH.set("how_known", "debug 頁面");
   dump();

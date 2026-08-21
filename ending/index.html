@@ -96,7 +96,6 @@ document.getElementById("continue-btn").addEventListener("click", () => {
         setTimeout(() => {
           document.getElementById("blackout-footer").style.display = "block";
         }, 800);
-        JH.set("ending_completed_at", Date.now());
         return;
       }
       const p = document.createElement("p");
@@ -110,9 +109,7 @@ document.getElementById("continue-btn").addEventListener("click", () => {
 });
 
 document.getElementById("gen-card-btn").addEventListener("click", () => {
-  const start = JH.get("session_start");
-  const end = JH.get("ending_completed_at") || Date.now();
-  const elapsedMinutes = start ? Math.max(1, Math.round((end - start) / 60000)) : 1;
+  const elapsedMinutes = Math.max(1, JH.activeMinutes());
 
   const canvas = document.getElementById("share-canvas");
   JHShareCard.draw(canvas, {

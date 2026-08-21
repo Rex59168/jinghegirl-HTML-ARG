@@ -49,18 +49,19 @@
   </div>
 
   <div class="panel">
-    <h2>對照:他傳的這則訊息</h2>
+    <h2>他傳的這則訊息</h2>
     <div style="background:#f7f7f7;border-radius:8px;padding:12px;font-size:14px;position:relative;" id="msg-row">
       「抱歉,明天好像會塞車,我們約晚一點好不好,17:30 可以嗎?」
       <div style="font-size:12px;color:#999;margin-top:6px;">8/13 17:20</div>
     </div>
-    <p style="font-size:13px;color:#666;margin-top:10px;">這則訊息是提前一天傳的,不是臨時通知。而且查了一下,那個時段路況其實正常。</p>
     <p style="text-align:center;margin-top:14px;">
-      <button type="button" class="flag-btn" id="flag-btn">標記這則訊息有問題</button>
+      <button type="button" class="flag-btn" id="flag-btn">跟路況資料比對</button>
     </p>
-    <p id="flag-result" style="display:none;font-size:13px;color:#b3261e;margin-top:10px;">
-      理由聽起來很合理,合理到她自己說服了自己——但其實根本沒有塞車的理由。這是第一個破口。
-    </p>
+    <div id="flag-result" style="display:none;font-size:13px;color:#333;margin-top:12px;padding:12px;background:#fff6f5;border-left:3px solid #b3261e;">
+      <strong style="color:#b3261e;">周妤:</strong>
+      這則訊息我看過不知道幾次了。「明天好像會塞車」——聽起來就是很普通的一句抱歉,普通到我當初轉貼給大家看的時候,根本沒人多想。
+      可是查了路況才發現,那個時段根本沒塞車。他是提前一整天,就先想好要這樣說了。
+    </div>
   </div>
 
   <div class="step-done-banner" id="done-banner" style="display:none;">這一步,她做對了。</div>

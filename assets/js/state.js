@@ -46,5 +46,33 @@ const JH = (() => {
     return hash === expectedHash;
   }
 
-  return { get, set, has, sha256, normalize, checkAnswer, PREFIX };
+  // 累計「實際在畫面前」的時間,不計算分頁隱藏或跨日暫停的空檔
+  const ACTIVE_KEY = "active_ms";
+  let lastTick = Date.now();
+
+  function flushActive() {
+    if (document.visibilityState !== "visible") {
+      lastTick = Date.now();
+      return;
+    }
+    const now = Date.now();
+    const delta = now - lastTick;
+    lastTick = now;
+    if (delta > 0 && delta < 120000) {
+      // 單次累加上限 2 分鐘,避免電腦睡眠等異常情況灌入離譜的數字
+      const prev = get(ACTIVE_KEY, 0);
+      set(ACTIVE_KEY, prev + delta);
+    }
+  }
+
+  setInterval(flushActive, 5000);
+  document.addEventListener("visibilitychange", flushActive);
+  window.addEventListener("pagehide", flushActive);
+
+  function activeMinutes() {
+    flushActive();
+    return Math.round(get(ACTIVE_KEY, 0) / 60000);
+  }
+
+  return { get, set, has, sha256, normalize, checkAnswer, activeMinutes, PREFIX };
 })();

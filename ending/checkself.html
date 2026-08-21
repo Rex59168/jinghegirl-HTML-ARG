@@ -23,12 +23,8 @@ body { background:#0d0d0d; color:#ddd; font-family:-apple-system,'PingFang TC',s
 <script src="/assets/js/state.js"></script>
 <script>
 const nickname = JH.get("nickname") || "（未知）";
-const start = JH.get("session_start");
-let elapsedStr = "（未知）";
-if (start) {
-  const mins = Math.max(1, Math.round((Date.now() - start) / 60000));
-  elapsedStr = mins + " 分鐘";
-}
+const mins = JH.activeMinutes();
+const elapsedStr = mins > 0 ? mins + " 分鐘" : "不到 1 分鐘";
 const now = new Date();
 
 const rows = [
@@ -37,8 +33,8 @@ const rows = [
   ["螢幕解析度", screen.width + " × " + screen.height],
   ["裝置類型", /Mobi|Android|iPhone/i.test(navigator.userAgent) ? "行動裝置" : "桌機/平板"],
   ["造訪時間", now.toLocaleString("zh-TW")],
-  ["這次停留大約", elapsedStr],
-  ["你在序章填的暱稱", nickname],
+  ["累計停留時間", elapsedStr],
+  ["你當初在表單填的暱稱", nickname],
 ];
 
 document.getElementById("report").innerHTML = rows
