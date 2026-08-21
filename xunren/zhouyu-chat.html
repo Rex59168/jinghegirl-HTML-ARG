@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>我和她的對話 | 協尋林晞</title>
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/widgets.css">
+<link rel="stylesheet" href="/assets/css/site-xunren.css">
+</head>
+<body class="site-xunren">
+
+<header class="xunren-head">
+  <h1>我和她的對話</h1>
+  <div class="sub">8/14 當天・周妤提供</div>
+</header>
+
+<main class="container">
+  <div class="notice-box">
+    這是我跟她那天的對話紀錄。我一直在想,如果我那時候多問一句就好了。
+  </div>
+
+  <section class="panel" style="font-size:14px;line-height:2;">
+    <p><strong>晞晞</strong> 16:40・欸我等一下要出門一下</p>
+    <p><strong>我</strong> 16:41・去哪?</p>
+    <p id="vague-line" style="cursor:pointer;padding:6px 8px;border-radius:6px;">
+      <strong>晞晞</strong> 16:43・<span style="border-bottom:2px dotted #b3261e;">跟同學去買東西</span>
+    </p>
+    <p><strong>我</strong> 16:44・喔好,早點回家</p>
+    <p><strong>晞晞</strong> 16:44・知道啦</p>
+  </section>
+
+  <section class="panel" id="reveal-panel" style="display:none;">
+    <p style="font-size:14px;">她說得很含糊。不是騙我——她只是不想被攔下來。</p>
+  </section>
+
+  <div class="step-done-banner" id="done-banner" style="display:none;background:#b3261e;color:#fff;text-align:center;padding:10px;border-radius:6px;font-weight:600;">這一步,她做對了。</div>
+  <p style="text-align:center;margin-top:14px;" id="back-link" style="display:none;"><a href="/xunren/rebuild-0814.html">← 回去看其他線索</a></p>
+</main>
+
+<script src="/assets/js/state.js"></script>
+<script src="/assets/js/notebook.js"></script>
+<script>
+window.JH_HINTS = [
+  "她有跟我說她要出門。點點看她怎麼說的。",
+  "她的說法很含糊,不是完全沒說。點那句對話看看。",
+  "點「跟同學去買東西」那句。",
+];
+</script>
+<script src="/assets/js/hint.js"></script>
+<script src="/assets/js/ambient.js"></script>
+<script>
+function complete() {
+  document.getElementById("reveal-panel").style.display = "block";
+  document.getElementById("done-banner").style.display = "block";
+  document.getElementById("back-link").style.display = "block";
+  JH.set("ch4_t4", true);
+  JHNotebook.add(
+    "ch4_t4",
+    "她有跟周妤說要出門,但說得很含糊:「跟同學去買東西」",
+    "/xunren/zhouyu-chat.html"
+  );
+}
+
+if (JH.get("ch4_t4")) complete();
+
+document.getElementById("vague-line").addEventListener("click", complete);
+</script>
+</body>
+</html>

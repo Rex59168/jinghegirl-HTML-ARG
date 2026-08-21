@@ -34,6 +34,7 @@ const items = [
   { key: "ch1_done", date: "8/17", text: "晞晞在找一張光碟,只知道編號開頭是 #18_。她房間的相簿裡藏著這條線索,不知道她自己有沒有發現。" },
   { key: "ch2_done", date: "8/19", text: "確認編號是 #188。這份光碟從 2023/11/06 掛在二手平台上,兩年沒人動過,留言 47 則,賣家一則都沒回——直到今年七月。" },
   { key: "ch3_done", date: "8/21", text: "拿到完整對話記錄。他們約在 8/14 文昌站見面,原本 16:00,後來他說塞車改成 17:30。" },
+  { key: "ch4_done", date: "8/24", text: "重建了 8/14 那一天。她做對了五件事——約在白天、約在公共場所、查過他的帳號、跟我說了、也開了定位分享。她還是出事了。" },
 ];
 
 const list = document.getElementById("updates-list");
@@ -45,12 +46,19 @@ items.forEach((it) => {
   list.appendChild(div);
 });
 
-if (JH.get("ch3_done")) {
+if (JH.get("ch3_done") && !JH.get("ch4_done")) {
+  const div = document.createElement("div");
+  div.className = "update-item";
+  div.innerHTML = '<span class="date"></span><a href="/xunren/rebuild-0814.html">→ 繼續:重建 8/14 那一天</a>';
+  list.appendChild(div);
+}
+
+if (JH.get("ch4_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
   div.style.opacity = ".7";
   div.innerHTML =
-    '<span class="date">製作中</span>第四章(重建 8/14 那一天)正在整理,還沒放上來。晚點再回來看看。';
+    '<span class="date">製作中</span>第五章(再讀一次對話)正在整理,還沒放上來。晚點再回來看看。';
   list.appendChild(div);
 }
 </script>

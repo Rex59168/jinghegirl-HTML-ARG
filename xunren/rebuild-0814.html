@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>重建 8/14 | 協尋林晞</title>
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/widgets.css">
+<link rel="stylesheet" href="/assets/css/site-xunren.css">
+</head>
+<body class="site-xunren">
+
+<header class="xunren-head">
+  <h1>重建 8/14</h1>
+  <div class="sub">周妤整理</div>
+</header>
+
+<main class="container">
+  <div class="notice-box">
+    好,我們現在要弄清楚一件事——她那天到底幾點還活著。
+    我把我這邊有的資料都整理出來了,你一個一個看,看完跟我說。
+  </div>
+
+  <section class="panel">
+    <h2>五件事</h2>
+    <ul id="task-list" style="list-style:none;padding:0;margin:0;"></ul>
+  </section>
+
+  <section class="panel" id="all-done-panel" style="display:none;text-align:center;">
+    <div id="stack-lines"></div>
+    <p id="final-line" style="display:none;font-size:20px;font-weight:bold;margin:20px 0;">她做對了五件事。</p>
+    <p id="final-link" style="display:none;"><a href="/xunren/updates.html">回協尋站看最新進度 →</a></p>
+  </section>
+</main>
+
+<script src="/assets/js/state.js"></script>
+<script src="/assets/js/notebook.js"></script>
+<script src="/assets/js/hint.js"></script>
+<script src="/assets/js/ambient.js"></script>
+<script>
+const TASKS = [
+  { key: "ch4_t1", label: "約定時間有沒有問題", href: "/transit/query.html", done: "她做對了:約在白天" },
+  { key: "ch4_t2", label: "她進出捷運的紀錄", href: "/transit/card-record.html", done: "她做對了:約在公共場所" },
+  { key: "ch4_t3", label: "他的帳號可信嗎", href: "/social/rec1029.html", done: "她做對了:查過他的帳號" },
+  { key: "ch4_t4", label: "她跟我說了什麼", href: "/xunren/zhouyu-chat.html", done: "她做對了:跟朋友說了" },
+  { key: "ch4_t5", label: "定位分享有沒有開", href: "/transit/location-share.html", done: "她做對了:開了定位分享" },
+];
+
+function renderList() {
+  const ul = document.getElementById("task-list");
+  ul.innerHTML = "";
+  TASKS.forEach((t) => {
+    const done = JH.get(t.key);
+    const li = document.createElement("li");
+    li.style.cssText = "padding:10px 0;border-bottom:1px solid #dfe6ee;";
+    li.innerHTML = `
+      <a href="${t.href}" style="font-size:15px;">
+        ${done ? "✅" : "▫️"} ${t.label}
+      </a>
+      ${done ? `<div style="color:#b3261e;font-size:13px;margin-top:2px;">${t.done}</div>` : ""}
+    `;
+    ul.appendChild(li);
+  });
+
+  if (TASKS.every((t) => JH.get(t.key))) {
+    showAllDone();
+  }
+}
+
+function showAllDone() {
+  if (JH.get("ch4_done")) return;
+  JH.set("ch4_done", true);
+  const panel = document.getElementById("all-done-panel");
+  panel.style.display = "block";
+  const stack = document.getElementById("stack-lines");
+  let i = 0;
+  const iv = setInterval(() => {
+    if (i >= TASKS.length) {
+      clearInterval(iv);
+      setTimeout(() => {
+        stack.style.transition = "opacity 1s";
+        stack.style.opacity = "0";
+        setTimeout(() => {
+          document.getElementById("final-line").style.display = "block";
+          document.getElementById("final-link").style.display = "block";
+        }, 1000);
+      }, 800);
+      return;
+    }
+    const p = document.createElement("p");
+    p.style.cssText = "color:#b3261e;font-weight:bold;margin:6px 0;";
+    p.textContent = "這一步,她做對了。";
+    stack.appendChild(p);
+    i++;
+  }, 500);
+}
+
+renderList();
+</script>
+</body>
+</html>
