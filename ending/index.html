@@ -110,11 +110,11 @@ document.getElementById("continue-btn").addEventListener("click", () => {
 });
 
 document.getElementById("gen-card-btn").addEventListener("click", () => {
-  const elapsedMinutes = Math.max(1, JH.activeMinutes());
+  const elapsedMs = Math.max(1000, JH.activeMs());
 
   const canvas = document.getElementById("share-canvas");
   JHShareCard.draw(canvas, {
-    elapsedMinutes,
+    elapsedMs,
     nickname,
     siteHost: window.location.host,
   });

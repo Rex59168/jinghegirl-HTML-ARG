@@ -1,13 +1,16 @@
 // share-card.js — 終幕分享卡:純前端 canvas 產生,不含任何謎題答案
 const JHShareCard = (() => {
-  function formatElapsed(minutes) {
-    if (minutes < 60) return `${minutes} 分鐘`;
-    const h = Math.floor(minutes / 60);
-    const m = minutes % 60;
+  function formatElapsed(ms) {
+    const totalSeconds = Math.round(ms / 1000);
+    if (totalSeconds < 60) return `${totalSeconds} 秒`;
+    const totalMinutes = Math.round(totalSeconds / 60);
+    if (totalMinutes < 60) return `${totalMinutes} 分鐘`;
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
     return m > 0 ? `${h} 小時 ${m} 分鐘` : `${h} 小時`;
   }
 
-  function draw(canvas, { elapsedMinutes, nickname, siteHost }) {
+  function draw(canvas, { elapsedMs, nickname, siteHost }) {
     const W = 1080, H = 1350;
     canvas.width = W;
     canvas.height = H;
@@ -48,7 +51,7 @@ const JHShareCard = (() => {
 
     ctx.fillStyle = "#fff";
     ctx.font = "bold 64px -apple-system, 'PingFang TC', sans-serif";
-    ctx.fillText(formatElapsed(elapsedMinutes), W / 2, 665);
+    ctx.fillText(formatElapsed(elapsedMs), W / 2, 665);
 
     ctx.fillStyle = "#777";
     ctx.font = "26px -apple-system, 'PingFang TC', sans-serif";

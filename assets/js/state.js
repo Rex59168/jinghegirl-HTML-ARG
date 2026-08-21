@@ -69,10 +69,14 @@ const JH = (() => {
   document.addEventListener("visibilitychange", flushActive);
   window.addEventListener("pagehide", flushActive);
 
-  function activeMinutes() {
+  function activeMs() {
     flushActive();
-    return Math.round(get(ACTIVE_KEY, 0) / 60000);
+    return get(ACTIVE_KEY, 0);
   }
 
-  return { get, set, has, sha256, normalize, checkAnswer, activeMinutes, PREFIX };
+  function activeMinutes() {
+    return Math.round(activeMs() / 60000);
+  }
+
+  return { get, set, has, sha256, normalize, checkAnswer, activeMs, activeMinutes, PREFIX };
 })();
