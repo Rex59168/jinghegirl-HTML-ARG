@@ -60,6 +60,10 @@
         <p style="font-size:11px;color:#666;margin-top:8px;">沒有自動下載的話,長按上面的圖片存檔</p>
       </div>
     </div>
+
+    <div style="margin-top:28px;">
+      <button type="button" id="reset-btn" style="background:none;color:#888;border:1px solid #444;padding:8px 16px;border-radius:8px;font-size:12px;">重置所有進度</button>
+    </div>
   </div>
 </div>
 
@@ -193,6 +197,17 @@ document.getElementById("gen-card-btn").addEventListener("click", () => {
 
   document.getElementById("share-card-preview").style.display = "block";
   JHShareCard.download(canvas, "013.png");
+});
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  const ok = confirm(
+    "確定要重置所有進度嗎?\n\n這會清空筆記本、周妤的訊息記錄、累計遊玩時間,回到協尋站首頁從頭開始。"
+  );
+  if (!ok) return;
+  Object.keys(localStorage)
+    .filter((k) => k.startsWith(JH.PREFIX))
+    .forEach((k) => localStorage.removeItem(k));
+  window.location.href = "index.html";
 });
 </script>
 </body>
