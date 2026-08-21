@@ -88,6 +88,9 @@
 </main>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/t2s-map.js"></script>
+<script src="assets/js/i18n-en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
@@ -169,7 +172,7 @@ function renderRow(r) {
 
   row.innerHTML = `
     <div class="listing-summary">
-      <span class="title">${r.title}${r.serial ? " " + r.serial : ""}</span>
+      <span class="title">${r.title}${r.serial ? ' <span class="serial">' + r.serial + "</span>" : ""}</span>
       <span class="price">${r.price}</span>
     </div>
     <div class="listing-detail">

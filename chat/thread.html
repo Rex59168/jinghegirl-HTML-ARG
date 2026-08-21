@@ -39,6 +39,9 @@
 <p style="color:#ece5dd;font-size:12px;text-align:center;margin-top:40px;user-select:text;">已讀不代表安全。</p>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/t2s-map.js"></script>
+<script src="assets/js/i18n-en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
@@ -108,7 +111,7 @@ function renderReorder() {
   function makeSlot(index) {
     const slot = document.createElement("div");
     slot.className = "slot" + (selectedId ? " active" : "");
-    slot.textContent = selectedId ? "点这里插入" : "─";
+    slot.textContent = selectedId ? "點這裡插入" : "─";
     slot.addEventListener("click", () => {
       if (!selectedId) return;
       const item = pool.find((p) => p.id === selectedId);

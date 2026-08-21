@@ -30,6 +30,12 @@
     };
   }
 
+  const LANGS = [
+    { code: "zh-Hant", label: "繁" },
+    { code: "zh-Hans", label: "简" },
+    { code: "en", label: "EN" },
+  ];
+
   function mount() {
     const { text, isLocal } = computeUrl();
 
@@ -40,6 +46,12 @@
       <button type="button" class="jh-bc-nav" id="jh-bc-fwd" aria-label="下一頁">→</button>
       <div class="jh-bc-url">${isLocal ? "" : '<span class="jh-bc-lock">🔒</span>'}<span class="jh-bc-url-text"></span></div>
       <button type="button" class="jh-bc-nav" id="jh-bc-refresh" aria-label="重新整理">⟳</button>
+      <div class="jh-bc-lang" id="jh-bc-lang">
+        <button type="button" class="jh-bc-lang-toggle" id="jh-bc-lang-toggle" aria-label="切換語言">🌐</button>
+        <div class="jh-bc-lang-menu" id="jh-bc-lang-menu">
+          ${LANGS.map((l) => `<button type="button" class="jh-bc-lang-opt" data-lang="${l.code}">${l.label}</button>`).join("")}
+        </div>
+      </div>
     `;
     document.body.insertBefore(bar, document.body.firstChild);
     bar.querySelector(".jh-bc-url-text").textContent = text;
@@ -48,6 +60,35 @@
     document.getElementById("jh-bc-back").addEventListener("click", () => history.back());
     document.getElementById("jh-bc-fwd").addEventListener("click", () => history.forward());
     document.getElementById("jh-bc-refresh").addEventListener("click", () => location.reload());
+
+    mountLangSwitcher(bar);
+  }
+
+  function mountLangSwitcher(bar) {
+    const toggle = bar.querySelector("#jh-bc-lang-toggle");
+    const menu = bar.querySelector("#jh-bc-lang-menu");
+
+    function refreshActive() {
+      const current = typeof JH_I18N !== "undefined" ? JH_I18N.getLang() : "zh-Hant";
+      menu.querySelectorAll(".jh-bc-lang-opt").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === current);
+      });
+    }
+    refreshActive();
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      menu.classList.toggle("open");
+    });
+    document.addEventListener("click", () => menu.classList.remove("open"));
+    menu.querySelectorAll(".jh-bc-lang-opt").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (typeof JH_I18N !== "undefined") JH_I18N.setLang(btn.dataset.lang);
+        refreshActive();
+        menu.classList.remove("open");
+      });
+    });
   }
 
   if (document.readyState === "loading") {

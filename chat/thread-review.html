@@ -30,6 +30,9 @@
 <div class="reveal-block" id="reveal-block" style="display:none;"></div>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/t2s-map.js"></script>
+<script src="assets/js/i18n-en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
@@ -108,7 +111,7 @@ backdrop.addEventListener("click", closeSheet);
 function openSheet(m) {
   activeMsgId = m.id;
   sheet.innerHTML = `
-    <div class="quote">「${escapeHtml(m.text)}」</div>
+    <div class="quote">「<span>${escapeHtml(m.text)}</span>」</div>
     ${CATEGORIES.map((c) => `<button type="button" class="tag-option" data-cat="${c.id}" style="background:${c.color}">${c.label}</button>`).join("")}
     <button type="button" class="tag-clear" id="tag-clear">移除標籤</button>
   `;

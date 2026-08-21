@@ -68,6 +68,9 @@
 </div>
 
 <script src="assets/js/state.js"></script>
+<script src="assets/js/t2s-map.js"></script>
+<script src="assets/js/i18n-en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/browser-chrome.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/idle-scroll.js"></script>
@@ -90,12 +93,25 @@ if (!file013Date) {
   );
 }
 
-document.getElementById("file013").textContent =
+// file013 混合了固定標籤和玩家自己填的自由文字(暱稱、how_known),
+// i18n.js 的字典比對沒辦法處理任意玩家輸入,所以標籤本身直接依語言挑選。
+const FILE013_LABELS = {
+  "zh-Hant": { nickname: "暱稱", howKnown: "你是怎麼知道這件事的", date: "建檔日期" },
+  "zh-Hans": { nickname: "昵称", howKnown: "你是怎么知道这件事的", date: "建档日期" },
+  en: { nickname: "Nickname", howKnown: "How you heard about this", date: "Date created" },
+};
+function renderFile013() {
+  const lang = typeof JH_I18N !== "undefined" ? JH_I18N.getLang() : "zh-Hant";
+  const L = FILE013_LABELS[lang] || FILE013_LABELS["zh-Hant"];
+  document.getElementById("file013").textContent =
 `013.txt
 
-暱稱：${nickname}
-你是怎麼知道這件事的：${howKnown}
-建檔日期：${file013Date}`;
+${L.nickname}：${nickname}
+${L.howKnown}：${howKnown}
+${L.date}：${file013Date}`;
+}
+renderFile013();
+document.addEventListener("jh-lang-changed", renderFile013);
 
 const ZY_FINAL_DEFAULT = `…我不知道還能做什麼。這個網站我會留著。
 如果你看到這裡了,謝謝你陪我走完這一段。`;
@@ -113,16 +129,44 @@ document.getElementById("zy-final").textContent = JH.get("news_done")
   ? ZY_FINAL_NEWS
   : ZY_FINAL_DEFAULT;
 
-const LINES = [
-  "你花了兩個小時，",
-  "就從一個女生的貼文裡拼出她讀哪間學校、幾點放學、家裡剩幾個人。",
-  "",
-  "他也是這樣做的。",
-  "",
-  "他花了兩年。",
-  "",
-  "你以為網路上的陌生人不了解你。",
-];
+// 逐字打字動畫每敲一個字都會重建文字節點,i18n.js 的 MutationObserver 只看得到
+// 打到一半的片段字串,永遠比對不上字典裡的完整句子,所以這裡直接依語言選整份陣列。
+const LINES_BY_LANG = {
+  "zh-Hant": [
+    "你花了兩個小時，",
+    "就從一個女生的貼文裡拼出她讀哪間學校、幾點放學、家裡剩幾個人。",
+    "",
+    "他也是這樣做的。",
+    "",
+    "他花了兩年。",
+    "",
+    "你以為網路上的陌生人不了解你。",
+  ],
+  "zh-Hans": [
+    "你花了两个小时，",
+    "就从一个女生的贴文里拼出她读哪间学校、几点放学、家里剩几个人。",
+    "",
+    "他也是这样做的。",
+    "",
+    "他花了两年。",
+    "",
+    "你以为网路上的陌生人不了解你。",
+  ],
+  en: [
+    "It took you two hours",
+    "to piece together, from one girl's posts, what school she goes to, when she gets out, how many people are left at home.",
+    "",
+    "He did the same thing.",
+    "",
+    "He just took two years.",
+    "",
+    "You thought a stranger online didn't know you.",
+  ],
+};
+function currentLines() {
+  const lang = typeof JH_I18N !== "undefined" ? JH_I18N.getLang() : "zh-Hant";
+  return LINES_BY_LANG[lang] || LINES_BY_LANG["zh-Hant"];
+}
 
 let endingStarted = false;
 
@@ -151,11 +195,12 @@ document.getElementById("continue-btn").addEventListener("click", () => {
 });
 
 function typeLines(container, index, onDone) {
-  if (index >= LINES.length) {
+  const lines = currentLines();
+  if (index >= lines.length) {
     onDone();
     return;
   }
-  const text = LINES[index];
+  const text = lines[index];
   const p = document.createElement("p");
   p.style.margin = "0 0 6px";
   p.style.minHeight = "1.4em";
@@ -200,12 +245,16 @@ document.getElementById("gen-card-btn").addEventListener("click", () => {
 });
 
 document.getElementById("reset-btn").addEventListener("click", () => {
-  const ok = confirm(
-    "確定要重置所有進度嗎?\n\n這會清空筆記本、周妤的訊息記錄、累計遊玩時間,回到協尋站首頁從頭開始。"
-  );
+  const lang = typeof JH_I18N !== "undefined" ? JH_I18N.getLang() : "zh-Hant";
+  const CONFIRM_TEXT = {
+    "zh-Hant": "確定要重置所有進度嗎?\n\n這會清空筆記本、周妤的訊息記錄、累計遊玩時間,回到協尋站首頁從頭開始。",
+    "zh-Hans": "确定要重置所有进度吗?\n\n这会清空笔记本、周妤的讯息记录、累计游玩时间,回到协寻站首页从头开始。",
+    "en": "Reset all progress?\n\nThis clears your notebook, Zhouyu's messages, and total playtime, and takes you back to the start of the site.",
+  };
+  const ok = confirm(CONFIRM_TEXT[lang] || CONFIRM_TEXT["zh-Hant"]);
   if (!ok) return;
   Object.keys(localStorage)
-    .filter((k) => k.startsWith(JH.PREFIX))
+    .filter((k) => k.startsWith(JH.PREFIX) && k !== JH.PREFIX + "lang")
     .forEach((k) => localStorage.removeItem(k));
   window.location.href = "index.html";
 });
