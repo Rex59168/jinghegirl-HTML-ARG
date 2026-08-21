@@ -2,7 +2,7 @@
 (function () {
   const DOMAIN_MAP = {
     social: "sns.today",
-    editor: "cloud.tw",
+    editor: "雲端",
     market: "market.tw",
     chat: "message-export.local",
     transit: "transit.jinghe.gov.tw",
