@@ -35,6 +35,9 @@
   <li><a href="/xunren/zhouyu-chat.html">/xunren/zhouyu-chat.html 第四章-4</a></li>
   <li><a href="/transit/location-share.html">/transit/location-share.html 第四章-5</a></li>
   <li><a href="/chat/thread-review.html">/chat/thread-review.html 第五章標註</a></li>
+  <li><a href="/files/collection.html">/files/collection.html 第六章清單</a></li>
+  <li><a href="/ending/index.html">/ending/index.html 終幕</a></li>
+  <li><a href="/ending/checkself.html">/ending/checkself.html 你留下了什麼</a></li>
   <li><a href="/xunren/updates.html">/xunren/updates.html 進度公告</a></li>
 </ul>
 
@@ -62,6 +65,8 @@ document.getElementById("unlock-all").addEventListener("click", () => {
   JH.set("ch4_t5", true);
   JH.set("ch4_done", true);
   JH.set("ch5_done", true);
+  JH.set("ch6_done", true);
+  if (!JH.get("session_start")) JH.set("session_start", Date.now());
   if (!JH.get("nickname")) JH.set("nickname", "測試員");
   if (!JH.get("how_known")) JH.set("how_known", "debug 頁面");
   dump();

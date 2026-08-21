@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>終幕 | 協尋林晞</title>
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/widgets.css">
+<link rel="stylesheet" href="/assets/css/site-xunren.css">
+</head>
+<body class="site-xunren">
+
+<div class="content-warning">
+  本站含失蹤、跟蹤等令人不適之情節,為虛構創作。<a href="/resources/help.html">求助資訊</a>
+</div>
+
+<header class="xunren-head">
+  <h1>協尋林晞</h1>
+  <div class="sub">靖河市失蹤協尋網</div>
+</header>
+
+<main class="container">
+  <div class="notice-box" id="zy-final">
+    …我不知道還能做什麼。這個網站我會留著。
+    如果你看到這裡了,謝謝你陪我走完這一段。
+  </div>
+
+  <section class="panel">
+    <h2>/收藏</h2>
+    <p style="font-size:13px;color:#888;">資料夾多了一個新檔案</p>
+    <pre style="background:#f7f7f7;border:1px solid #ddd;padding:12px;font-size:13px;white-space:pre-wrap;" id="file013"></pre>
+  </section>
+
+  <section class="panel" style="text-align:center;">
+    <button type="button" class="btn" id="continue-btn">繼續</button>
+  </section>
+</main>
+
+<div id="blackout" style="position:fixed;inset:0;background:#000;z-index:300;display:none;color:#eee;">
+  <div id="blackout-lines" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-size:17px;line-height:2.4;padding:0 24px;max-width:480px;"></div>
+  <div id="blackout-footer" style="display:none;position:absolute;bottom:40px;left:0;right:0;text-align:center;">
+    <a href="/resources/help.html" style="color:#9fc7ff;font-size:15px;">求助資訊 / 本作虛構聲明 →</a>
+    <br><br>
+    <a href="/ending/checkself.html" style="color:#777;font-size:13px;">你留下了什麼 →</a>
+  </div>
+</div>
+
+<script src="/assets/js/state.js"></script>
+<script src="/assets/js/notebook.js"></script>
+<script>
+const nickname = JH.get("nickname") || "（未知）";
+const howKnown = JH.get("how_known") || "（未知）";
+const today = new Date();
+const dateStr = `${today.getFullYear()}/${String(today.getMonth()+1).padStart(2,"0")}/${String(today.getDate()).padStart(2,"0")}`;
+
+document.getElementById("file013").textContent =
+`013.txt
+
+暱稱：${nickname}
+你是怎麼知道這件事的：${howKnown}
+建檔日期：${dateStr}`;
+
+const LINES = [
+  "你花了兩個小時，",
+  "就從一個女生的貼文裡拼出她讀哪間學校、幾點放學、家裡剩幾個人。",
+  "",
+  "他也是這樣做的。",
+  "",
+  "他花了兩年。",
+  "",
+  "你以為網路上的陌生人不了解你。",
+];
+
+document.getElementById("continue-btn").addEventListener("click", () => {
+  JH.set("ending_seen", true);
+  const bo = document.getElementById("blackout");
+  bo.style.display = "block";
+  document.body.style.overflow = "hidden";
+  const linesEl = document.getElementById("blackout-lines");
+  linesEl.innerHTML = "";
+
+  setTimeout(() => {
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= LINES.length) {
+        clearInterval(iv);
+        setTimeout(() => {
+          document.getElementById("blackout-footer").style.display = "block";
+        }, 800);
+        return;
+      }
+      const p = document.createElement("p");
+      p.style.margin = "0 0 6px";
+      p.style.minHeight = "1.4em";
+      p.textContent = LINES[i];
+      linesEl.appendChild(p);
+      i++;
+    }, 1400);
+  }, 5000); // 全黑後停留 5 秒,什麼都不放
+});
+</script>
+</body>
+</html>
