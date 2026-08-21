@@ -78,6 +78,18 @@ const STORIES = {
   4: { ts: "19:41", caption: "〔畫面昏暗〕", text: "到了。" },
 };
 
+// 恐怖層:失蹤後的日子重訪,偶爾會多出第 5 則,時間戳在失蹤之後。
+// 不存進 localStorage,純看這次載入運氣——重新整理不保證還在。
+if (JH.get("ch3_done") && Math.random() < 0.5) {
+  STORIES[5] = { ts: "凌晨 03:14", caption: "〔畫面全黑〕", text: "" };
+  const rail = document.getElementById("story-rail");
+  const btn = document.createElement("button");
+  btn.className = "story-item";
+  btn.dataset.story = "5";
+  btn.innerHTML = `<span class="story-ring">照片</span><span class="ts">8/16</span>`;
+  rail.appendChild(btn);
+}
+
 const viewer = document.getElementById("story-viewer");
 const body = document.getElementById("sv-body");
 const progress = document.getElementById("sv-progress");

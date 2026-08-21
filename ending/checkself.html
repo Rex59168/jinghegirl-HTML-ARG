@@ -39,8 +39,12 @@ const rows = [
   ["你當初在表單填的暱稱", nickname],
 ];
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+}
+
 document.getElementById("report").innerHTML = rows
-  .map(([k, v]) => `<div style="display:flex;justify-content:space-between;border-bottom:1px dashed #333;padding:4px 0;"><span style="color:#888;">${k}</span><span>${v}</span></div>`)
+  .map(([k, v]) => `<div style="display:flex;justify-content:space-between;border-bottom:1px dashed #333;padding:4px 0;"><span style="color:#888;">${escapeHtml(k)}</span><span>${escapeHtml(v)}</span></div>`)
   .join("");
 </script>
 </body>

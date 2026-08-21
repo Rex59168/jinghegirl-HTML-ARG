@@ -73,6 +73,8 @@
   <div id="list"></div>
   <div class="pager" id="pager"></div>
 
+  <p style="color:#fffaf5;font-size:12px;margin-top:60px;user-select:text;">他也看得到你在找什麼。</p>
+
 </main>
 
 <script src="assets/js/state.js"></script>
@@ -166,6 +168,7 @@ function renderRow(r) {
         <div class="field"><dt>最後更新</dt><dd>${r.updatedDate}</dd></div>
         <div class="field"><dt>留言</dt><dd>${r.comments} 則${r.sellerReplies !== undefined ? "・賣家回覆 " + r.sellerReplies + " 則" : ""}</dd></div>
         ${r.sellerAccountCreated ? `<div class="field"><dt>帳號建立</dt><dd>${r.sellerAccountCreated}</dd></div>` : ""}
+        ${isTarget ? `<div class="field"><dt>上次上線</dt><dd>${1 + Math.floor(Math.random() * 12)} 分鐘前</dd></div>` : ""}
       </dl>
       ${isTarget ? '<button type="button" class="confirm-btn" id="confirm-188">就是這份 —— 標記為找到了</button><p id="confirm-note" style="margin-top:8px;color:#7a4a20;"></p>' : ""}
     </div>

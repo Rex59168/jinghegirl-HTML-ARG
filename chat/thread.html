@@ -33,6 +33,8 @@
   <button type="button" class="chat-continue-btn" id="continue-btn">重建 8/14 那一天 →</button>
 </div>
 
+<p style="color:#ece5dd;font-size:12px;text-align:center;margin-top:40px;user-select:text;">已讀不代表安全。</p>
+
 <script src="assets/js/state.js"></script>
 <script src="assets/js/notebook.js"></script>
 <script>
@@ -65,10 +67,25 @@ function shuffle(arr) {
   return order.map((i) => arr[i]);
 }
 
+// 恐怖層:跑完終幕後重訪對話記錄,這一則的時間戳偶爾會跟記憶中的分鐘數不一樣
+// 不存進 localStorage,純看這次載入運氣
+function shiftTime(timeStr, deltaMin) {
+  const [d, hm] = timeStr.split(" ");
+  let [h, mnt] = hm.split(":").map(Number);
+  mnt += deltaMin;
+  if (mnt < 0) { mnt += 60; h -= 1; }
+  if (mnt > 59) { mnt -= 60; h += 1; }
+  return `${d} ${String(h).padStart(2, "0")}:${String(mnt).padStart(2, "0")}`;
+}
+
 function bubble(m) {
   const div = document.createElement("div");
   div.className = "chat-msg " + m.who;
-  div.innerHTML = `${m.edited ? '<span class="edited-badge">已編輯</span>' : ""}${escapeHtml(m.text)}<span class="time">${m.time}</span>`;
+  let displayTime = m.time;
+  if (m.id === "m10" && JH.get("ending_seen") && Math.random() < 0.5) {
+    displayTime = shiftTime(m.time, Math.random() < 0.5 ? -1 : 1);
+  }
+  div.innerHTML = `${m.edited ? '<span class="edited-badge">已編輯</span>' : ""}${escapeHtml(m.text)}<span class="time">${displayTime}</span>`;
   return div;
 }
 function escapeHtml(s) {

@@ -27,7 +27,11 @@
   <div class="card"><p>今天去的那間二手店老闆人很好,推薦</p><p class="meta">1 週前・24 個讚</p></div>
   <div class="card"><p>NOCTIS 新專輯首賣排隊實錄,排了 4 小時值得</p><p class="meta">2 週前・61 個讚</p></div>
   <div class="card"><p>幫朋友問,有人有多的演唱會應援燈嗎</p><p class="meta">3 週前・9 個讚</p></div>
-  <div class="card"><p>收藏櫃整理到一半,發現好幾張忘記自己有</p><p class="meta">1 個月前・33 個讚</p></div>
+  <div class="card">
+    <p>收藏櫃整理到一半,發現好幾張忘記自己有</p>
+    <p class="meta">1 個月前・33 個讚</p>
+    <div id="old-comments" style="margin-top:8px;padding-top:8px;border-top:1px solid #eee;font-size:12px;color:#555;"></div>
+  </div>
 
   <div class="card">
     <p style="font-weight:600;">共同好友</p>
@@ -58,7 +62,22 @@
 <script src="assets/js/notebook.js"></script>
 <script src="assets/js/hint.js"></script>
 <script src="assets/js/ambient.js"></script>
+<script src="assets/js/idle-scroll.js"></script>
 <script>
+// 恐怖層:玩家在序章填的暱稱,偶爾會出現在一則一個月前的舊留言裡。
+// 不存進 localStorage,重新整理不保證還在。
+(function () {
+  const nickname = JH.get("nickname");
+  const container = document.getElementById("old-comments");
+  const lines = ["@old_vinyl88:羨慕"];
+  if (nickname && Math.random() < 0.5) lines.push(`${nickname}:想看實拍`);
+  lines.push("@static_reel:哪張啊求分享");
+  lines.forEach((line, i) => {
+    if (i > 0) container.appendChild(document.createElement("br"));
+    container.appendChild(document.createTextNode(line));
+  });
+})();
+
 document.getElementById("report-btn").addEventListener("click", () => {
   const toast = document.getElementById("report-toast");
   toast.style.display = "block";

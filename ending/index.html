@@ -21,10 +21,7 @@
 </header>
 
 <main class="container">
-  <div class="notice-box" id="zy-final">
-    …我不知道還能做什麼。這個網站我會留著。
-    如果你看到這裡了,謝謝你陪我走完這一段。
-  </div>
+  <div class="notice-box" id="zy-final" style="white-space:pre-wrap;"></div>
 
   <section class="panel">
     <h2>/收藏</h2>
@@ -67,6 +64,7 @@
 
 <script src="assets/js/state.js"></script>
 <script src="assets/js/notebook.js"></script>
+<script src="assets/js/idle-scroll.js"></script>
 <script src="assets/js/share-card.js"></script>
 <script>
 const nickname = JH.get("nickname") || "（未知）";
@@ -74,12 +72,40 @@ const howKnown = JH.get("how_known") || "（未知）";
 const today = new Date();
 const dateStr = `${today.getFullYear()}/${String(today.getMonth()+1).padStart(2,"0")}/${String(today.getDate()).padStart(2,"0")}`;
 
+// 013.txt 的建檔日期:第一次看到時顯示今天,之後重訪一律顯示同一個提前一天的日期
+// ——暗示這個檔案在你填表單之前,其實就已經在那裡了
+let file013Date = JH.get("file013_date");
+if (!file013Date) {
+  file013Date = dateStr;
+  const backdated = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+  JH.set(
+    "file013_date",
+    `${backdated.getFullYear()}/${String(backdated.getMonth() + 1).padStart(2, "0")}/${String(backdated.getDate()).padStart(2, "0")}`
+  );
+}
+
 document.getElementById("file013").textContent =
 `013.txt
 
 暱稱：${nickname}
 你是怎麼知道這件事的：${howKnown}
-建檔日期：${dateStr}`;
+建檔日期：${file013Date}`;
+
+const ZY_FINAL_DEFAULT = `…我不知道還能做什麼。這個網站我會留著。
+如果你看到這裡了,謝謝你陪我走完這一段。`;
+
+const ZY_FINAL_NEWS = `…我不知道還能做什麼。這個網站我本來是為了找晞晞才架的。
+
+我沒想到最後找到的是姐姐。
+
+三年了,我一直跟她們家說「說不定哪天林昭會自己回來」,現在我不知道要拿什麼臉再去見他們。
+
+晞晞呢?我不敢往下想。這個網站我會留著。
+如果你看到這裡了,謝謝你陪我走完這一段。`;
+
+document.getElementById("zy-final").textContent = JH.get("news_done")
+  ? ZY_FINAL_NEWS
+  : ZY_FINAL_DEFAULT;
 
 const LINES = [
   "你花了兩個小時，",

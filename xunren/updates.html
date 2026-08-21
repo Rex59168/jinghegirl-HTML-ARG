@@ -38,6 +38,7 @@ const items = [
   { key: "ch4_done", date: "8/24", text: "重建了 8/14 那一天。她做對了五件事——約在白天、約在公共場所、查過他的帳號、跟我說了、也開了定位分享。她還是出事了。" },
   { key: "ch5_done", date: "8/26", text: "重讀了一次對話,這次看懂了。那兩個共同好友帳號其實是同一個人假扮的。" },
   { key: "ch6_done", date: "8/28", text: "看到他的收藏資料夾了。我不知道該說什麼。" },
+  { key: "news_done", date: "8/31", text: "河堤那具遺骸,確認是林昭。我一直在想,如果我早一點意識到晞晞在做什麼就好了。" },
 ];
 
 const list = document.getElementById("updates-list");
@@ -70,7 +71,14 @@ if (JH.get("ch5_done") && !JH.get("ch6_done")) {
   list.appendChild(div);
 }
 
-if (JH.get("ch6_done")) {
+if (JH.get("ch6_done") && !JH.get("news_done")) {
+  const div = document.createElement("div");
+  div.className = "update-item";
+  div.innerHTML = '<span class="date"></span><a href="news/report.html">→ 看一則新聞</a>';
+  list.appendChild(div);
+}
+
+if (JH.get("news_done")) {
   const div = document.createElement("div");
   div.className = "update-item";
   div.innerHTML = '<span class="date"></span><a href="ending/index.html">→ 最新進度</a>';

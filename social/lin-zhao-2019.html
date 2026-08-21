@@ -18,14 +18,14 @@
 
 <main class="container">
   <div class="card" style="border-color:#ddd;background:#f8f8f8;">
-    <p class="meta">這個帳號的主人 2022 年 9 月失蹤,至今未尋獲。以下是她生前公開的貼文存檔。</p>
+    <p class="meta" id="archive-notice">這個帳號的主人 2022 年 9 月失蹤,至今未尋獲。以下是她生前公開的貼文存檔。</p>
   </div>
 
   <div class="card">
     <p>抽中了抽中了抽中了!!!!!!</p>
     <p>靖河站限定藍光,而且是雋的簽名版本啊啊啊啊 這輩子運氣都用完了吧</p>
     <p>編號 <strong>#188</strong>,我要裱框(不是)</p>
-    <p class="meta">2019/11/23・214 個讚</p>
+    <p class="meta">2019/11/23・<span id="like-count">214</span> 個讚</p>
   </div>
 
   <div class="card">
@@ -53,6 +53,18 @@ JHNotebook.add(
   "林昭 2019 年開箱貼文:她抽中的是靖河站限定 #188,JUN 簽名",
   "social/lin-zhao-2019.html"
 );
+
+if (JH.get("news_done")) {
+  document.getElementById("archive-notice").textContent =
+    "這個帳號的主人 2022 年 9 月失蹤,遺骸已於今年 8 月尋獲確認。以下是她生前公開的貼文存檔。";
+}
+
+// 恐怖層:確認遺骸身分之後重訪,這則貼文的按讚數偶爾會跟記憶中的不一樣
+// 不存進 localStorage,純看這次載入運氣
+if (JH.get("news_done") && Math.random() < 0.5) {
+  const delta = Math.random() < 0.5 ? -1 : 1;
+  document.getElementById("like-count").textContent = 214 + delta * (1 + Math.floor(Math.random() * 2));
+}
 </script>
 </body>
 </html>
